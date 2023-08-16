@@ -1,0 +1,43 @@
+*Nome projeto *undefined 
+
+*iniciar banco de dados primeiro 
+*apos desenvolver o php 
+*front 
+
+------------ BANCO DE DADOS -------------
+
+CREATE DATABASE carro;
+use carro;
+
+create table tbUsuarioCadastrado (
+    idUsuarioCadastrado int auto_increment,
+    nome varchar(100) not null,
+    sexo enum('M', 'F') not null,
+    dtNascimento date not null,
+    nrCpf char(11) not null,
+    dsEmail varchar(100) not null,
+    nrTelefone varchar(20),
+    PRIMARY KEY(idPessoaCadastro)
+);
+
+create table tbUsuarioLogin (
+    idUsuarioLogin int auto_increment,
+    usuario varchar(20),
+    senha varchar(20),
+    idUsuarioCadastrado int,
+    PRIMARY KEY(idUsuarioLogin),
+    FOREIGN KEY(idUsuarioCadastrado) REFERENCES tbUsuarioCadastrado(idUsuarioCadastrado)
+);
+
+create table tbEstado (
+    idEstado int auto_increment,
+    nmEstado varchar(50) not null,
+    PRIMARY KEY(idEstado)
+);
+
+create table tbCidade (
+    idCidade int auto_increment,
+    nmCidade varchar(50) not null,
+    PRIMARY KEY(idCidade),
+    FOREIGN KEY(idEstado) REFERENCES tbEstado(idEstado)
+);
